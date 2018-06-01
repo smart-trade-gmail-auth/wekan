@@ -8,14 +8,6 @@ Users.attachSchema(new SimpleSchema({
   username: {
     type: String,
     optional: true,
-    autoValue() { // eslint-disable-line consistent-return
-      if (this.isInsert && !this.isSet) {
-        const name = this.field('profile.fullname');
-        if (name.isSet) {
-          return name.value.toLowerCase().replace(/\s/g, '');
-        }
-      }
-    },
   },
   emails: {
     type: [Object],
@@ -41,13 +33,6 @@ Users.attachSchema(new SimpleSchema({
   profile: {
     type: Object,
     optional: true,
-    autoValue() { // eslint-disable-line consistent-return
-      if (this.isInsert && !this.isSet) {
-        return {
-          boardView: 'board-view-lists',
-        };
-      }
-    },
   },
   'profile.avatarUrl': {
     type: String,

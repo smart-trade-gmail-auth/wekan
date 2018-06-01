@@ -11,12 +11,8 @@ template(name="headerUserBar")
 
 template(name="memberMenuPopup")
   ul.pop-over-list
-    with currentUser
-      li: a.js-edit-profile {{_ 'edit-profile'}}
       li: a.js-change-settings {{_ 'change-settings'}}
       li: a.js-change-avatar {{_ 'edit-avatar'}}
-      li: a.js-change-password {{_ 'changePasswordPopup-title'}}
-      li: a.js-change-language {{_ 'changeLanguagePopup-title'}}
       li: a.js-edit-notification {{_ 'editNotificationPopup-title'}}
     if currentUser.isAdmin
       li: a.js-go-setting(href="{{pathFor 'setting'}}") {{_ 'admin-panel'}}
@@ -24,31 +20,6 @@ template(name="memberMenuPopup")
   ul.pop-over-list
     li: a.js-logout {{_ 'log-out'}}
 
-template(name="editProfilePopup")
-  form
-    label
-      | {{_ 'fullname'}}
-      input.js-profile-fullname(type="text" value=profile.fullname autofocus)
-    label
-      | {{_ 'username'}}
-      span.error.hide.username-taken
-        | {{_ 'error-username-taken'}}
-      if allowUserNameChange
-        input.js-profile-username(type="text" value=username)
-      else
-        input.js-profile-username(type="text" value=username readonly)
-    label
-      | {{_ 'initials'}}
-      input.js-profile-initials(type="text" value=profile.initials)
-    label
-      | {{_ 'email'}}
-      span.error.hide.email-taken
-        | {{_ 'error-email-taken'}}
-      if allowEmailChange
-        input.js-profile-email(type="email" value="{{emails.[0].address}}")
-      else
-        input.js-profile-email(type="email" value="{{emails.[0].address}}" readonly)
-    input.primary.wide(type="submit" value="{{_ 'save'}}")
 
 template(name="editNotificationPopup")
   ul.pop-over-list
@@ -66,18 +37,6 @@ template(name="editNotificationPopup")
         if hasTag "notify-participate"
           i.fa.fa-check
         span.sub-name {{_ 'notify-participate'}}
-
-template(name="changePasswordPopup")
-  +atForm(state='changePwd')
-
-template(name="changeLanguagePopup")
-  ul.pop-over-list
-    each languages
-      li(class="{{# if isCurrentLanguage}}active{{/if}}")
-        a.js-set-language
-          = name
-          if isCurrentLanguage
-            i.fa.fa-check
 
 template(name="changeSettingsPopup")
   ul.pop-over-list
