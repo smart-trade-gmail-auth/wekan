@@ -18,7 +18,6 @@ AccountsTemplates.configure({
 	 } else {
 	   FlowRouter.go(homePage);
 	 }
-	},
   }
  });  
 
@@ -27,8 +26,8 @@ AccountsTemplates.configure({
 AccountsTemplates.configure({
   texts: {
  errors: {
-      mustBeLoggedIn: "Please login with your Matsuri account.",
-      loginForbidden: "Only Matsuri accounts are allowed."
+      mustBeLoggedIn: "Please login with your ST account.",
+      loginForbidden: "Only ST accounts are allowed."
     }
    }
 });
